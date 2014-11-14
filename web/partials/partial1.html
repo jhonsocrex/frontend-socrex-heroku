@@ -1,0 +1,143 @@
+<div>
+<h2>{{selectedListing.title}}</h2>
+<br>
+<div id="mainContent">
+    <input type="button" value="Back" ng-click="redirecToListingList();" />
+    <table>
+        <tr>
+        <td>
+            <table>
+              <tr>
+                <td>Price: {{selectedListing.price}}</td>
+              </tr>
+              <tr>
+                <td style="min-width:400px">Address: {{selectedListing.address}}</td>
+              </tr>
+              <tr>
+                <td>Bedroom: {{selectedListing.bedroom}}</td>
+              </tr>
+              <tr>
+                <td>Bathroom: {{selectedListing.bathroom}}</td>
+              </tr>
+            </table>
+          </td>
+          <td>
+          <ul dynamic3="{{directives3}}" class="bxslider"></ul>
+          <!--
+          <ul id="sliderelement" class="bxslider" bxslider>
+            <li><img src="http://images.craigslist.org/00V0V_7KrsygPW5pf_600x450.jpg" /></li>
+            <li><img src="http://images.craigslist.org/00G0G_3yEtFrm5hOJ_600x450.jpg" /></li>
+            <li><img src="http://images.craigslist.org/00H0H_hKFjFn3Dw4B_600x450.jpg" /></li>
+            <li><img src="http://images.craigslist.org/00s0s_8XViC9BNrrD_600x450.jpg" /></li>
+          </ul>-->
+          </td>
+        </tr>
+    </table>
+    <br>
+    <p>
+      {{selectedListing.body}}
+    </p>
+    <br>
+    <br>
+     
+    <br>
+    <br>
+    <!-- <input type="button" value="Have us check this place out" ng-click="onClickInterested();" /> -->
+    <table  class="table table-striped">
+        <tr style="width:100px">
+            <td><input type="button" value="Original listing" ng-click="onClickOriginalListingButton();" /></td>
+            <td><input type="button" value="Have us check this place out" ng-click="onClickInterested();" /></td>
+            <!-- <td><input type="button" value="Verify availability" ng-click="onClickVerifyAvailability();" /></td>
+            <td><input type="button" value="Expert review" ng-click="onClickExpertReview();" /></td>
+            <td><input type="button" value="Tour" ng-click="onClickTour();" /></td> -->
+        </tr>
+        <!-- <tr style="width:100px">
+            <td> Go to the original listing page</td>
+            <td> we are going to verify availability and any special requirements by the landlord </td>
+            <td> A local expert will review the listing</td>
+            <td> We will enable a virtual tour so you can do a 360 degrees tour</td>
+        </tr> -->
+    </table>
+</div>
+<!--
+<table  class="table table-striped">
+    <tr ng-repeat="row in rows | filter : search"  ng-class="{'muted':isTemp($index)}">
+    <td>{{$index+1}}</td>
+    <td>{{row[0]}}</td>
+    <td><a href="http://{{row[1]}}">{{row[1]}}</a></td>
+    <td>
+        <button class="btn btn-danger btn-mini" ng-click="deleteRow(row)" ng-hide="isTemp($index)"><i class="icon-trash icon-white"></i></button>
+    </td>
+    </tr>
+</table>
+-->
+</div>
+<div id="contactdialog" title="Contact" jqueryuidialog>
+  <p>Your Phone: 33-333-333-333</p>
+  <p>We will send the following email to the listing owner:</p>
+  <p>"I am interested in this rental and would like to schedule a viewing. Please let me know when this would be possible."</p>
+  <input type="button" value="Send"/>
+</div>
+
+<div id="provide_email_dialog" title="Provide email" jqueryuidialog>
+  <p>Please provide us with your basic contact information so that we can reach you regarding this apartment.</p>
+  <br>
+  <div>
+    <form ng-submit="onSubmitConcierge(user);">
+      <table class="table table-striped">
+      <tr>
+        <td>Full Name: </td><td><input type="text" ng-model="user.fullname" placeholder="" required/></td>
+      </tr>
+      <tr>
+        <td>Email: </td><td><input type="email" ng-model="user.email" placeholder="" required/></td>
+      </tr>
+      <tr>
+        <td>Phone: </td><td><input type="text" ng-model="user.phone" placeholder="" required/></td>
+      </tr>
+
+      <tr>
+        <td><button type="submit">Submit</button></td>
+      </tr>
+      </table>
+    </form>
+  </div>
+</div>
+
+<div id="workingdialog" title="Thank you" jqueryuidialog>
+  <p>Thank you for your request!</p>
+  <p>One of our agents will be reviewing this listing for you and will get back to you as soon as possible!</p>
+</div>
+
+<div id="verifyavailabilitydialog" title="Verify availability" jqueryuidialog>
+  <!--<p>Linkedin url: www.google.com</p>-->
+  <p>We will contact the landlord or agent directly on your behalf and ask if the unit is available and if they would accept someone with your credentials. We will also ensure the listing is authentic and protect you from scams.</p>
+  <p>Enable unlimited verifications for 20$</p>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="H4EN7TWCFUBX2">
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  </form>
+</div>
+<div id="expertreviewdialog" title="Expert review" jqueryuidialog>
+  <p>We will have one of our local experts review the listing for you and give you an honest assessment via email of the neighborhood and the unit itself. Our experts get no commission and will have your interests at heart</p>
+  <p>Enable unlimited expert opinions for 20$</p>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="7MBHF2WSGNBLW">
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  </form>
+
+</div>
+<div id="tourdialog" title="Tour" jqueryuidialog>
+  <!--<p>Linkedin url: www.google.com</p>-->
+  <p>We will contact the listing owner on your behalf and ensure the listing is accurate and that they would accept someone with your credentials.  Additionally, we will send someone to see the unit and film 360 picture + videos for you to later take a virtual tour. We will also have a local expert advise you if this listing is right for you.</p>
+  <p>Each virtual tour is 250$</p>
+  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="hosted_button_id" value="MM723EFXYT28J">
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  </form>
+</div>

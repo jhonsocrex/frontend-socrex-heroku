@@ -1,0 +1,54 @@
+<div>
+  <h1>Socrex Listings</h1>
+  <h3>{{totalListings}} Listing{{plural(totalListings)}} <span ng-show="temp">?<small class="muted"><em > (only {{rows2.length-1}} actually....)</em></small></span></h3>
+  <input type="button" value="reload" ng-click="filterListings(1,10);" />
+  <!-- <div id="simplepaginator" simplepaginator></div> -->
+  <div dynamic4="{{totalPages}}" class="pagination-large"></div>
+  <!-- <ul class="pagination-large" twbspagination></ul>-->
+  <table ng-show="isTableVisibleFlag">
+    <tr>
+    <td>
+      <table  class="table table-hover"  >
+        <tr>
+        <td>Socrex rank</td>
+        <!--<td>Your rank</td>-->
+        <td>Price</td>
+        <td>Bedroom</td>
+        <td>Bathroom</td>
+        <td>Neighborhood</td>
+        <td>Address</td>
+        <td>Details</td>
+        </tr>
+        <tr ng-repeat="row in rows2 | filter : search"  ng-class="{'muted':isTemp($index)}" ng-mouseover="onTableRowHover('{{row._id.$oid}}',{{row.latitude}},{{row.longitude}} );">
+          <!--<td>{{$index+1}}</td>-->
+          <!--<td>{{row.score}}</td>-->
+          <td><div class="basic" data-average="{{row.relevance}}" data-id="{{row.relevance}}" jrating></div></td>
+          <!--<td><div class="basic" data-average="{{row.starValue}}" data-id="2" jrating></div></td>-->
+          
+          <!--<td><div class="basic_rating" data-average="0" data-id="{{$index+1}}" rating></div></td>-->
+          <!--<td>
+            <input type="range" value="0" min="0" max="5" step="1">
+          </td>-->
+          <td>{{row.price}}</td>
+          <td>{{row.bedroom}}</td>
+          <td>{{row.bathroom}}</td>
+          <td>{{row.neighborhood.Name}}</td>
+          <td>{{row.address}}</td>
+          <td><input type="button" value="details" ng-click="getDetailedListing('{{row._id.$oid}}');"></td>
+        </tr>
+      </table>
+      
+      
+    </td>
+    <td>
+      <!-- <div map>here should be a map :P</div> -->
+      <div ng-controller="MapCtrl">
+        <div id="map" style="height:475px;width:600px;"></div>
+      </div>
+    </td>
+  </tr>
+</table>
+  <p ng-show="isLoadingListingsFlag">  Loading listings... </p>
+      <p ng-show="noListingFoundFlag"> No listings were found. </p>
+      <p ng-show="unexpectedErrorFlag"> There was an error, please reload the page. </p>
+</div>

@@ -1,0 +1,172 @@
+    <!-- begin:header -->
+    <div id="header" class="carousel slide carousel-fade" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="item active" style="background-image: url(img/slide02.jpg); height:100%">
+          <div class="landing-message">
+            <h1>Rent apartments reliably from anywhere in the world</h1>
+            <h3>We are your local contact helping you find a place to live in a new city</h3>
+          </div>
+        </div>
+    </div>
+    <!-- end:header -->
+
+    <!-- begin:search -->
+    <div class="the-search">
+      <div class="container">
+          <form role="form" ng-submit="onSubmitInitial();">
+              <table class="search-table">
+              <tr>
+                <td>
+                  <label class="landing-label" for="movein">Move in date</label>
+                  <!-- <input type="date" id="datepicker" class="form-control center-block movein" ng-model="initialForm.movein"> -->
+                  <script>
+                    $(function() {
+                      $( "#datepicker" ).datepicker();
+                    });
+                  </script>
+                  <input id="datepicker" class="form-control" type="text" ng-model="initialForm.movein" placeholder="mm/dd/yyyy" required />
+                  
+                </td>
+                <td>
+                  <label class="landing-label" for="city">City</label>
+                  <select class="form-control">
+                    <option>Boston</option>
+                  </select>
+                </td>
+                <td>
+                  <label for="submit">&nbsp;</label>
+                  <button type="submit" name="submit" class="btn btn-success btn-block">Search</button>
+                </td>
+              </tr>
+              </table>
+          </form>
+      </div>
+    </div>
+    <!-- end:search -->
+
+    <!-- begin:service -->
+    <div id="service">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="#"><i class="fa fa-search"></i></a>
+              </div>
+              <div class="service-content">
+                <p class="landing-info-title">Browse and learn</p>
+                <p class="landing-info">Identify apartments you like in neighborhoods great for you.</p>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="#"><i class="fa fa-user"></i></a>
+              </div>
+              <div class="service-content">
+                <p class="landing-info-title">Scout and pick</p>
+                <p class="landing-info">We verify availability and requirements, book showings and even provide video tours just for you.</p>
+              </div>
+            </div>
+          </div>
+          <!-- break -->
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="service-container">
+              <div class="service-icon">
+                <a href="#"><i class="fa fa-key"></i></a>
+              </div>
+              <div class="service-content">
+                <p class="landing-info-title">Click and rent</p>
+                <p class="landing-info">We help you close your rental lease online.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+    <!-- end:service -->
+
+    
+    <!-- begin:testimony -->
+    <!-- <div id="testimony" style="background-image: url(img/img01.jpg);">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div id="testislider" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item active">
+                  <div class="testimony-container">
+                    <div class="testimony-image" style="background: url(img/team01.jpg)"></div>
+                    <div class="testimony-content">
+                      <h3>Jane Doe</h3>
+                      <blockquote>
+                        <p>Phasellus quis lectus metus, at posuere neque. Sed pharetra nibh eget orci convallis at posuere leo convallis</p>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="testimony-container">
+                    <div class="testimony-image" style="background: url(img/team02.jpg)"></div>
+                    <div class="testimony-content">
+                      <h3>Cen Lung</h3>
+                      <blockquote>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="testimony-container">
+                    <div class="testimony-image" style="background: url(img/team03.jpg)"></div>
+                    <div class="testimony-content">
+                      <h3>Julia</h3>
+                      <blockquote>
+                        <p>Vivamus sit amet libero turpis, non venenatis urna. In blandit, odio convallis suscipit venenatis, ante ipsum cursus augue.</p>
+                      </blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="left carousel-control" href="#testislider" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+              </a>
+              <a class="right carousel-control" href="#testislider" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              </a>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- end:testimony -->
+
+    <!-- begin:partner -->
+    <div id="partner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heading-title bg-white">
+              <h3>Backed by</h3>
+            </div>
+            <div class="partner-images-container">
+              <img src="img/logos/socialatom.png">
+              <img src="img/logos/ruta-n.png">
+            </div>
+            <div class="heading-title bg-white">
+              <h3>As seen in</h3>
+            </div>
+            <div class="partner-images-container">
+              <img src="img/logos/bostonstartupsguide.png">
+              <img src="img/logos/pulsosocial.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:partner -->
+</html>

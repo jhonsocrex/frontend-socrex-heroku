@@ -1,0 +1,213 @@
+
+
+    <!-- begin:header -->
+    <div id="header" class="heading" style="background-image: url(img/img01.jpg);">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="quick-search">
+              <div class="row">
+                <form role="form" ng-submit="onSubmitFilters();">
+                  <div class="col-md-4 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                      <label for="bedroom">Apartment Type</label>
+                      <select class="form-control" ng-model="filter.room" ng-options="room.type for room in rooms" required>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="maxprice">Max Price ($)</label>
+                      <output class="form-control" id="pricevalue" style="text-align:center;">{{filter.priceRange}}</output>
+                      <input name="priceinput" id="priceinput" type="range" min="0" step="250" max="10000" ng-model="filter.priceRange" value = "1000" oninput="pricevalue.value=value" required>
+                    </div>
+                    
+                  </div>
+                  <!-- break -->
+                  <div class="col-md-4 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                      <label for="person">What do you identify with?</label>
+                      <select class="form-control" ng-model="filter.person" ng-options="person.type for person in persons" required>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="hood">Preferred neighborhood style</label>
+                      <select class="form-control" ng-model="filter.hoodStyle" ng-options="hood.type for hood in hoods" required>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- break -->
+                  <div class="col-md-4 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                      <label for="maxprice">&nbsp;</label>
+                      <!-- <input type="submit" name="submit" value="Search Again" class="btn btn-success btn-block" ng-click="onSubmitFilters();"> -->
+                      <button type="submit" name="submit" class="btn btn-success btn-block">Search</button>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+
+  
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+
+          <!-- Loading -->
+          <div ng-show="isLoadingListingsFlag">
+            <div align ="center" class="contener_general">
+              <div class="contener_mixte"><div class="ballcolor ball_1">&nbsp;</div></div>
+              <div class="contener_mixte"><div class="ballcolor ball_2">&nbsp;</div></div>
+              <div class="contener_mixte"><div class="ballcolor ball_3">&nbsp;</div></div>
+              <div class="contener_mixte"><div class="ballcolor ball_4">&nbsp;</div></div>
+            </div>
+            <div style="padding-top:35px;">
+              <div style="font-weight:300; font-size:30px;padding-top:20px; text-align:center;">Loading results, please wait...</div>
+            </div>
+          </div>
+
+          <!-- No Listings -->
+          <div ng-show="noListingFoundFlag">
+            <div style="padding-top:35px;">
+              <div style="font-weight:300; font-size:30px;padding-top:20px; text-align:center;">We're sorry, no listings were found.</div>
+            </div>
+          </div>
+
+          <!-- Error -->
+          <div ng-show="unexpectedErrorFlag">
+            <div style="padding-top:35px;">
+              <div style="font-weight:300; font-size:30px;padding-top:20px; text-align:center;">We apologize, an unexpected error has occurred, please try again.</div>
+            </div>
+          </div>
+
+          <!-- begin:article -->
+          <div ng-show="showListingsFlag">
+            <div class="listings-list col-md-9">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="heading-title heading-title-alt">
+                    <h3>Listings tailored for you:</h3>
+                  </div>
+                </div>
+              </div>
+              <!-- begin:sorting -->
+              <!-- <div class="row sort">
+                <div class="col-md-4 col-sm-4 col-xs-3">
+                  <a href="search.html" class="btn btn-success"><i class="fa fa-th"></i></a>
+                  <a href="search_list.html" class="btn btn-default"><i class="fa fa-list"></i></a>
+                  <span>Show <strong>9</strong> of <strong>30</strong> result.</span>
+                </div>
+                
+              </div> -->
+              <!-- end:sorting -->
+
+              <!-- begin:product -->
+              <div class="row container-realestate">
+                <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="row in rowdata">
+                  <div class="property-container">
+                    <div class="property-image">
+                      <a href="javascript:;" ng-init="listingId=row._id.$oid" ng-click="getDetailedListing(listingId);" >
+                        <img src="{{row.pictures[0]}}" style="height:200px;">
+                      </a>
+                      <div class="property-price">
+                        <!-- <h4>Offices</h4> -->
+                        <span>${{row.price}}</span>
+                      </div>
+                      <div class="property-status">
+                        <span>Score: {{row.score}}</span>
+                      </div>
+                    </div>
+                    <div class="property-features">
+                      <!-- <span><i class="fa fa-home"></i> 5,000 m<sup>2</sup></span> -->
+                      <span><i class="fa fa-hdd-o"></i> {{row.bedroom}} Bed</span>
+                      <span><i class="fa fa-male"></i> {{row.bathroom}} Bath</span>
+                    </div>
+                    <div class="property-content">
+                      <!-- <h3><a href="{{row.url}}">Craigslist Link</a> <small>{{row.address}}</small></h3> -->
+                      <h3>                        
+                        <!-- <input type="button" value="details" ng-click="getDetailedListing('{{row._id.$oid}}');"> -->
+                        <!-- <p ng-click="getDetailedListing('{{row._id.$oid}}');">See details.</p> -->
+                        <a style="font-size:16px;" href="javascript:;" ng-init="listingId=row._id.$oid" ng-click="getDetailedListing(listingId);" >Details</a>
+                        <small>{{row.address}}</small>
+                        <small>{{row.neighborhood.Name}}</small>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <!-- break -->
+                
+                <!-- break -->
+              </div>
+              <!-- end:product -->
+
+              <!-- begin:pagination -->
+              <!-- 
+              <div class="row">
+                <div class="col-md-12">
+                 <div dynamic4="{{totalPages}}" class="pagination"></div>
+                </div>
+              </div>
+              -->
+              <!-- end:pagination -->
+              <!-- begin:pagination -->
+                    <!-- works!!!! -->
+                    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-md" ng-change="pageChanged()" boundary-links="true"></pagination>
+              <!-- end:pagination -->
+            </div>
+            <!-- end:article -->
+
+            <!-- begin:sidebar -->
+            <!-- <div class="col-md-3 col-md-pull-9 sidebar">
+              <div class="widget widget-sidebar widget-white">
+                <div class="widget-header">
+                  <h3>Recent Property</h3>
+                </div>    
+                <ul>
+                  <li><a href="#">Luxury Villa</a></li>
+                  <li><a href="#">Land In Central Park</a></li>
+                  <li><a href="#">The Urban Life</a></li>
+                  <li><a href="#">Luxury Office</a></li>
+                  <li><a href="">Luxury Villa In Rego Park</a></li>
+                </ul>
+              </div> -->
+              <!-- break -->
+              <!-- <div class="widget widget-sidebar widget-white">
+                <div class="widget-header">
+                  <h3>Property Type</h3>
+                </div>    
+                <ul class="list-check">
+                  <li><a href="#">Office</a>&nbsp;(18)</li>
+                  <li><a href="#">Office</a>&nbsp;(43)</li>
+                  <li><a href="#">Shop</a>&nbsp;(31)</li>
+                  <li><a href="#">Villa</a>&nbsp;(52)</li>
+                  <li><a href="#">Apartment</a>&nbsp;(8)</li>
+                  <li><a href="#">Single Family Home</a>&nbsp;(11)</li>
+                </ul>
+              </div> -->
+              <!-- break -->
+              <!-- <div class="widget widget-sidebar widget-white">
+                <div class="widget-header">
+                  <h3>Top Agents</h3>
+                </div>    
+                <ul>
+                  <li><a href="#">John Doe</a></li>
+                  <li><a href="#">Christoper Drew</a></li>
+                  <li><a href="#">Jane Doe</a></li>
+                  <li><a href="#">Jeny</a></li>
+                </ul>
+              </div> -->
+              <!-- break -->
+            <!-- </div> -->
+            <!-- end:sidebar -->
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
